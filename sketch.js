@@ -52,11 +52,15 @@ function draw() {
 
 function mousePressed() {
   if (humSound && typeof humSound.play === 'function') {
+    if (getAudioContext().state !== 'running') {
+      getAudioContext().resume();
+    }
+    
+    humSound.stop();
     humSound.play();
   }
   
   if (mouseY > height - 100) return;
-
 
   let x = mouseX - width / 2;
   let y = mouseY - height / 2;
